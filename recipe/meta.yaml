@@ -48,6 +48,7 @@ about:
   summary: 'Socket.IO integration for Flask applications'
   doc_url: https://flask-socketio.readthedocs.io/en/latest/
   dev_url: https://github.com/miguelgrinberg/Flask-SocketIO/
+  doc_source_url: https://github.com/miguelgrinberg/Flask-SocketIO/blob/main/docs/index.rst
 
 extra:
   recipe-maintainers:
