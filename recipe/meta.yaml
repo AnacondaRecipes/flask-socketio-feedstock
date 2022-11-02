@@ -44,6 +44,7 @@ about:
   license: MIT
   license_file: LICENSE
   license_family: MIT
+  license_url: https://github.com/miguelgrinberg/Flask-SocketIO/blob/main/LICENSE
   summary: 'Socket.IO integration for Flask applications'
   doc_url: https://flask-socketio.readthedocs.io/en/latest/
   dev_url: https://github.com/miguelgrinberg/Flask-SocketIO/
