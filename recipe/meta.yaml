@@ -19,13 +19,13 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
     - setuptools
     - wheel
 
   run:
-    - python >=3.6
+    - python
     - flask >=0.9
     - python-socketio >=5.0.2
 
