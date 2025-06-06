@@ -1,33 +1,29 @@
 {% set name = "Flask-SocketIO" %}
-{% set version = "5.3.1" %}
-{% set bundle = "tar.gz" %}
-
+{% set version = "5.5.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
-  sha256: fd0ed0fc1341671d92d5f5b2f5503916deb7aa7e2940e6636cfa2c087c828bf9
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower|replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: d946c944a1074ccad8e99485a6f5c79bc5789e3ea4df0bb9c864939586c51ec4
 
 build:
-  skip: true  # [py<37]
-  preserve_egg_dir: True
+  skip: true  # [py<36]
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=61.2
     - wheel
-
   run:
     - python
     - flask >=0.9
-    - python-socketio >=5.0.2
+    - python-socketio >=5.12.0
 
 test:
   imports:
@@ -38,25 +34,22 @@ test:
     - pip
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
 
 about:
-  home: https://github.com/miguelgrinberg/Flask-SocketIO/
+  home: https://github.com/miguelgrinberg/flask-socketio
   license: MIT
   license_file: LICENSE
   license_family: MIT
-  license_url: https://github.com/miguelgrinberg/Flask-SocketIO/blob/main/LICENSE
-  summary: 'Socket.IO integration for Flask applications'
-  doc_url: https://flask-socketio.readthedocs.io/en/latest/
-  dev_url: https://github.com/miguelgrinberg/Flask-SocketIO/
-  doc_source_url: https://github.com/miguelgrinberg/Flask-SocketIO/blob/main/docs/index.rst
+  summary: Socket.IO integration for Flask applications.
   description: |
-    Flask-SocketIO gives Flask applications access to low 
-    latency bi-directional communications between the clients
-    and the server. The client-side application can use any
-    of the SocketIO client libraries in Javascript, Python,
-    C++, Java and Swift, or any other compatible client to
-    establish a permanent connection to the server.
-
+    Flask-SocketIO gives Flask applications access to low latency bi-directional
+    communications between the clients and the server. The client-side application can
+    use any of the SocketIO client libraries in Javascript, Python, C++, Java and Swift,
+    or any other compatible client to establish a permanent connection to the server.
+  dev_url: https://github.com/miguelgrinberg/flask-socketio
+  doc_url: https://flask-socketio.readthedocs.io
+  
 extra:
   recipe-maintainers:
     - pmlandwehr
