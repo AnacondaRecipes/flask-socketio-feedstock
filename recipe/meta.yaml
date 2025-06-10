@@ -26,15 +26,19 @@ requirements:
     - python-socketio >=5.12.0
 
 test:
+  source_files:
+    - test_socketio.py
   imports:
     - flask_socketio
     - flask_socketio.namespace
     - flask_socketio.test_client
   requires:
     - pip
+    - redis
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - python -m unittest -v test_socketio.py
 
 about:
   home: https://github.com/miguelgrinberg/flask-socketio
