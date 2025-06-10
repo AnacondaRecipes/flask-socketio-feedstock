@@ -34,7 +34,7 @@ test:
     - flask_socketio.test_client
   requires:
     - pip
-    - redis
+    - redis-py
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
