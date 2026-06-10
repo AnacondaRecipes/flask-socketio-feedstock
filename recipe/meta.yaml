@@ -1,5 +1,5 @@
 {% set name = "Flask-SocketIO" %}
-{% set version = "5.6.0" %}
+{% set version = "5.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,23 +7,27 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower|replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 42a7bc552013633875ad320e39462323b4f7334594f1658d72b6ffed99940d4c
+  sha256: fe5bd995c3ed4da9a98f335d0d830fa1a19d84a64789f6265642a671fdacaeac
 
 build:
   number: 0
-  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<38]
 
 requirements:
   host:
     - pip
     - python
-    - setuptools >=61.2
     - wheel
+    - setuptools >=61.2
   run:
     - python
+    - blinker
+    - click
     - flask >=2.1.0
+    - jinja2
     - python-socketio >=5.12.0
+    - werkzeug
 
 test:
   source_files:
